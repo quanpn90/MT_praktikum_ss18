@@ -1,0 +1,368 @@
+\documentclass[12pt,fleqn]{article}
+\usepackage{a4wide}
+\usepackage{ngerman}
+%\usepackage{umlaut}
+%\usepackage[dvips]{graphicx}
+\usepackage[utf8]{inputenc}
+\usepackage[]{listings}
+\lstset{literate=%
+    {Ö}{{\"O}}1
+    {Ä}{{\"A}}1
+    {Ü}{{\"U}}1
+    {ß}{{\ss}}1
+    {ü}{{\"u}}1
+    {ä}{{\"a}}1
+    {ö}{{\"o}}1
+    {~}{{\textasciitilde}}1
+}
+% \usepackage[latin1]{inputenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\usepackage{bm}
+\usepackage[pdftex]{graphicx}
+\DeclareGraphicsExtensions{.ps.gzbody,.ps, .eps.gzbody, .eps}
+\DeclareGraphicsRule{.ps.gzbody}{eps}{.ps.gzheader}{`gzcat #1}
+\DeclareGraphicsRule{.eps.gzbody}{eps}{.eps.gzheader}{`gzcat #1}
+\usepackage{color}
+
+\usepackage{vmargin}
+\setpapersize{A4}
+\setmarginsrb{2.0cm}{1.5cm}{2.5cm}{2cm}{1.2\baselineskip}{1cm}{1.2\baselineskip}{0cm}
+\newcommand{\mpraktikum}{\textbf{MT Praktikum - Alignment} } 
+
+\newcommand{\mhead}{\pagestyle{myheadings}
+        \markright{\underline{\textsf{\mpraktikum - \today  -  \hfill Eunah Cho, KIT, eunah.cho@kit.edu}}}}
+
+\newcommand{\mlogo}{ \sffamily \vspace*{-10mm}
+  \begin{minipage}{2cm}
+    \includegraphics[scale=0.3]{Bilder/KIT.jpg}
+  \end{minipage}
+  \hfill
+  \begin{minipage}{10.5cm}
+    \textsf{\large{Karlsruhe Institute of Technology}} \\[0.2ex]
+    \textsf{\large{Dr. Eunah Cho}}\\  
+    \textsf{\large{Institute for Anthropomatics and Robotics, Interactive Systems Labs}}\\[0.2ex]  
+    \textsf{eunah.cho@kit.edu} 
+  \end{minipage}
+  \rmfamily
+  \vspace*{2cm}
+
+   \centerline{\Large \mpraktikum } 
+   \vspace{1ex}
+   \centerline{\Large \today}
+  } 
+\setlength{\parindent}{0cm}
+\setlength{\unitlength}{1cm}  
+\addtolength{\marginparsep}{3mm}
+\sloppy 
+
+\begin{document}
+\thispagestyle{empty}
+
+
+\mhead
+
+\mlogo
+
+\vspace{2cm} 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \loes \medskip \\   % Signalverarbeitung
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Um die Aufgaben auszuführen, können Sie Ihre Daten in folgendem Verzeichnis speichern: 
+\texttt{/project/smtstud/ss17/systems/USERNAME/} 
+
+\vspace{0.5cm} 
+Wir werden zunächst mit Hilfe des GIZA++ Toolkits: IBM Model 1, HMM, IBM Model 3 und IBM Model 4 trainieren und uns das resultierende Word Alignment ansehen.
+Dann werden wir das Training für ein IBM Model 1 Lexikon implementieren und Trainingsiterationen an einem konstruierten Beispiel durchgehen.
+
+\vspace{0.5cm} 
+Sehen Sie sich die Trainingsdaten in deutsch und englisch einmal an, um einen Eindruck davon zu gewinnen, womit Sie arbeiten: \\ 
+\texttt{/project/smtstud/ss17/data/corpus/train.de-en.1-99.de} \\
+\texttt{/project/smtstud/ss17/data/corpus/train.de-en.1-99.en} 
+
+
+\vspace{0.5cm} 
+Bitte melden Sie sich nach Abschluss jeder Aufgabe (oder ggf. Zwischenaufgabe), sodass wir ausschließen können, dass Sie mit fehlerhaften Dateien weitermachen. Melden Sie sich bitte auch, wenn eine angegebene Laufzeit für ein Programm stark überschritten wird.
+
+\vspace{0.5cm} 
+\begin{enumerate}
+
+\item \textbf{Trainieren der Word Alignment Models: Vorbereitung der Daten} 
+
+\vspace{0.5cm} 
+Die parallelen Trainingsdaten müssen zunächst vorbereitet werden, da das GIZA++ Toolkit sie in einem bestimmten Format erwartet.
+
+\vspace{0.5cm} 
+\begin{enumerate} 
+\item Führen Sie das script:  \\
+\texttt{/project/smtstud/ss17/bin/prepare-data.sh} \\ 
+in Ihrem Verzeichnis aus und sehen Sie sich die Ausgabe und die erzeugten Dateien an.
+(Laufzeit ca. 4min, hauptsächlich in Schritt 1.1)
+
+\vspace{0.5cm} 
+- Schritt 1.0.5 bezieht sich auf das Trainieren faktorisierter Modelle, welche wir heute nicht verwenden werden. (D.h. dieser Schritt hat auf unsere nicht faktorisierten Daten keine Wirkung. Faktorisierte Übersetzungsmodelle werden in der Vorlesung später besprochen.)
+
+\vspace{0.5cm} 
+- Schritt 1.1 berechnet die Wortklassen, die für das Trainieren von IBM Model 4 benötigt werden. Auf diesen Schritt werden wir heute nicht weiter eingehen.
+
+\vspace{0.5cm} 
+- Die in Schritt 2.1a erstellten coocurrence files listen alle de-en Wortpaare auf, die in den Trainingsdaten zusammen auftauchen. Die Dateien sind die Vorlage für die Lexika.
+
+\vspace{0.5cm} 
+Sehen Sie sich die Dateien aus Schritt 1.2 und 1.3 (\texttt{./corpus/de.vcb}, \texttt{./corpus/en.vcb}, \texttt{./corpus/de-en-int-train.snt}) einmal an.
+
+
+\vspace{0.5cm} 
+\begin{itemize} 
+\item Was tun die Schritte 1.2 und 1.3?
+\item Wieso wird der Trainingscorpus so bearbeitet?
+\end{itemize} 
+
+
+\end{enumerate} 
+
+\vspace{0.5cm} 
+\item \textbf{Trainieren der Word Alignment Modelle bis zu IBM Model 4} 
+
+\vspace{0.5cm} 
+Verwenden Sie zum Trainieren der word alignment models das Programm: \\ 
+
+\texttt{/project/smtstud/ss17/bin/giza/GIZA++ } \\ 
+
+(Sie können sich alle möglichen Parameter mit ihren default-Werten ansehen, wenn Sie das Programm ohne Parameter aufrufen. Wir werden nicht die Zeit haben diese alle zu besprechen.)
+
+\vspace{0.5cm} 
+Berechnen Sie die Modelle zunächst in der Sprachrichtung: Quellsprache: Englisch, Zielsprache: Deutsch. 
+Hinweis: aus historischen Gründen (noisy channel model) werden sich die Ausgabedateien hierfür im Verzeichnis: „giza.de-en“ befinden und auch das Dateipräfix de-en haben.
+
+\vspace{0.5cm} 
+
+\textbf{Verwenden Sie folgende Parameter:} \\ 
+
+(Hinweis: damit Sie nicht all diese Parameter abtippen müssen, können Sie sich den Programmaufruf hier kopieren: \texttt{/project/smtstud/ss17/bin/run.giza} – Führen Sie den Befehl in Ihrem Userverzeichnis aus, wo Sie die Daten aus Aufgabe 1 vorbereitet haben. Laufzeit ca. 6 min)
+
+
+\vspace{0.5cm} 
+Vorbereitete Trainingsdaten einlesen: \\
+\texttt{-CoocurrenceFile	./giza.de-en/de-en.cooc}\\
+\texttt{-c			./corpus/de-en-int-train.snt}\\
+\texttt{-s 			./corpus/en.vcb} \\
+\texttt{-t 			./corpus/de.vcb}\\
+
+
+Anzahl der Iterationen für jedes Modell:\\
+\texttt{-hmmiterations 	5}\\
+\texttt{-model1iterations  	5} \\
+\texttt{-model2iterations	0} (wir verwnden das HMM model anstelle von model 2)\\
+\texttt{-model3iterations	3}\\
+\texttt{-model4iterations	3}\\
+
+
+Alle Zwischenmodelle ausgeben (wir werden uns einige davon ansehen)\\
+\texttt{-model1dumpfrequency 1}\\
+\texttt{-hmmdumpfrequency 1}\\
+\texttt{-model2dumpfrequency 1}\\
+\texttt{-model345dumpfrequency 1}\\
+\texttt{-transferdumpfrequency 1}\\
+
+
+Ausgabeprefix:\\
+\texttt{	-o ./giza.de-en/de-en} \\
+Bedeutung der Dateinamen der Ausgabedateien:\\
+Datei: \texttt{./giza.t-s/t-s.xn.m}\\
+
+
+\texttt{t}: target language (e.g. de)\\
+\texttt{s}: source language (e.g. en)\\
+
+
+\texttt{x}: type of table: t = word lexicon, a = alignment model, A = alignment, n = fertilities, d = distortion model, p0 = probability, that the NULL word is not inserted\\
+\texttt{n}: model number (z.B. model 1 oder hmm, aus historischen Implementationsgründen sind model 4 files zum Teil als höhere model 3 Iterationen geführt, z.B. de-en.A3.5 ist tatsächlich das Alignment der 2. Iteration model 4)\\
+\texttt{m}: iteration number\\
+
+
+\vspace{0.5cm} 
+\begin{enumerate} 
+\item Sehen Sie sich die Perplexität der Traingsdaten für die verschiedenen Modelle und Iterationen an. (Hinweis: diese finden Sie sowohl in der Logdatei des Trainings train.giza.log als auch zusammengefasst in der Datei \texttt{giza.de-en/de-en.perp})
+
+\vspace{0.5cm} 
+\begin{itemize} 
+\item Wie entwickelt sich die Perplexität der Trainingsdaten und warum? 
+\end{itemize} 
+
+\item Sehen Sie sich das Wortlexikon aus dem Model 1 Training Iteration 5 (\texttt{giza.de-en/de-en.t1.5}) und aus dem Model 4 Training (\texttt{giza.de-en/de-en.t3.final}) an. 
+(Lexikonformat: EN DE probability) 
+
+\vspace{0.5cm} 
+\begin{itemize} 
+\item Finden Sie die jeweils die 3 wahrscheinlichsten Übersetzungen für das englische „you“. \\ 
+
+Hinweis: \\ 
+1. Verwenden Sie die beiden Vokabularien: giza.de-en/de-en.trn.src.vcb und giza.de-en/de-en.trn.trg.vcb.  \\
+2. Befehl:  grep ``\textasciicircum$<$Index$>$'' $<$file$>$ \textbar  LC\_ALL=C sort -g -k $<$key$>$ \\ 
+
+\item Wie unterscheiden sich die Lexika und warum?
+
+
+\begin{table}[h] 
+ \begin{center} 
+\begin{tabular}{|p{4cm}|l|p{4cm}|l|} \hline 
+\multicolumn{2}{|p{6cm}|}{model 1} & \multicolumn{2}{|p{6cm}|}{model 4} \\ \hline 
+& &  & \\ \hline 
+ & &  & \\ \hline 
+ & &  & \\ \hline 
+ & &  & \\ \hline 
+ & & & \\ \hline 
+\end{tabular}
+ \end{center}
+\end{table}
+
+\end{itemize}
+
+\vspace{0.5cm} 
+\item Vergleichen Sie die Alignment Dateien aus der jeweils letzten Iteration von Model 1 Training (giza.de-en/de-en.A1.5) und aus dem Model 4 Training(giza.de-en/de-en.A3.final).
+
+\vspace{0.5cm} 
+\begin{itemize} 
+ \item Finden Sie das Alignment für Satz Nummer 11 in beiden Dateien und tragen Sie die alignment links jeweils unten ein:  
+ 
+ \vspace{0.5cm}
+  Model 1 Training (Iteration 5) giza.de-en/de-en.A1.5 \\ 
+  
+ \begin{table}[h] 
+ \begin{center} 
+\begin{tabular}{lllllllllllll} 
+0 & 1&2&3&4&5&6&7&8&9&10&11&12 \\ 
+NULL & `` & Noh & '' & is & a&typical&,&traditional&form&of&theatre&. \\  
+&&&&&&&&&&&& \\ 
+&&&&&&&&&&&& \\ 
+&&&&&&&&&&&& \\ 
+& `` & Noh & '' & ist & eine & typische&,&traditionelle & Form&des&Theaters& . \\ 
+0 & 1&2&3&4&5&6&7&8&9&10&11&12 \\ 
+\end{tabular}
+ \end{center}
+\end{table}
+
+ \vspace{0.5cm}
+ Model 4 Training (Iteration 3) giza.de-en/de-en.A3.final \\ 
+ 
+ 
+ \begin{table}[h] 
+ \begin{center} 
+\begin{tabular}{lllllllllllll} 
+0 & 1&2&3&4&5&6&7&8&9&10&11&12 \\ 
+NULL & `` & Noh & '' & is & a&typical&,&traditional&form&of&theatre&. \\  
+&&&&&&&&&&&& \\ 
+&&&&&&&&&&&& \\ 
+&&&&&&&&&&&& \\ 
+& `` & Noh & '' & ist & eine & typische&,&traditionelle & Form&des&Theaters& . \\ 
+0 & 1&2&3&4&5&6&7&8&9&10&11&12 \\ 
+\end{tabular}
+ \end{center}
+\end{table}
+
+ \item Was können Sie hier ablesen?
+\end{itemize}
+
+Trainieren Sie nun alle Modelle für die umgekehrte Sprachrichtung:
+Führen Sie den Befehl in /project/smtstud/ss17/bin/run.giza.rev in Ihrem User-verzeichnis aus, wo Sie die Daten aus Aufgabe 1 vorbereitet haben. (Laufzeit ca. 6 min)
+
+\item Vergleichen Sie die Alignment Dateien aus der letzten Iteration model 1 aus den beiden Trainingsrichtungen. (giza.de-en/de-en.A1.5 und giza.en-de/en-de.A1.5) 
+
+\begin{itemize} 
+ \item Finden Sie das Alignment für Satz Nummer 106855 (am Ende der Dateien) in beiden Dateien und tragen Sie die alignment links jeweils unten ein:
+ 
+ \vspace{0.5cm}
+ Model 1 Training (Iteration 5) forward giza.de-en/de-en.A1.5 \\ 
+ 
+  \begin{table}[h] 
+ \begin{center} 
+\begin{tabular}{lllllll} 
+0 & 1&2&3&4&5&6\\ 
+NULL &  may & I & take & a & message & ? \\  
+&&&&&& \\ 
+&&&&&&\\ 
+&&&&&&\\ 
+& soll & ich & eine & Nachricht & aufschreiben & ? \\ 
+0 & 1&2&3&4&5&6\\ 
+\end{tabular}
+ \end{center}
+\end{table}
+ 
+ 
+ \vspace{0.5cm} 
+ Model 1 Training (Iteration 5) reverse giza.en-de/en-de.A1.5 \\ 
+ 
+ 
+   \begin{table}[h] 
+ \begin{center} 
+\begin{tabular}{lllllll} 
+0 & 1&2&3&4&5&6\\ 
+NULL &  may & I & take & a & message & ? \\  
+&&&&&& \\ 
+&&&&&&\\ 
+&&&&&&\\ 
+& soll & ich & eine & Nachricht & aufschreiben & ? \\ 
+0 & 1&2&3&4&5&6\\ 
+\end{tabular}
+ \end{center}
+\end{table}
+ \item Was lässt sich an diesem Beispiel deutlich ablesen?
+\end{itemize}
+
+ 
+\end{enumerate} 
+
+\vspace{0.5cm} 
+\item \textbf{Implementierung: IBM model 1 (Zusatzaufgabe)} 
+
+\vspace{0.5cm} 
+Das IBM1 Modell wird benutzt um ein word alignment und ein Lexikon für einen Satz-alinierten Corpus zu generieren. 
+Schreiben sie ein Programm, das ein Lexikon und einen Corpus als Eingabe bekommt und danach einen Schritt des EM-Algorithmus zum Trainieren des IBM1 Modell vollführt.
+
+\vspace{0.5cm} 
+Falls Sie das in Perl/Python programmieren möchten, können Sie folgende Vorlage verwenden:
+/project/smtstud/ss17/bin/IBM1.pl oder /project/smtstud/ss17/bin/IBM1.py
+(Hinweis: Nehmen Sie den Pseudocode aus der Vorlesung zur Hilfe.)
+
+\vspace{0.5cm} 
+Das initiale Lexikon und die Beispielsätze aus der Vorlesung finden sie im Verzeichnis: \\ 
+/project/smtstud/ss17/data/smallExample
+
+\vspace{0.5cm} 
+\begin{itemize} 
+ \item Wie verändern sich die lexikalischen Wahrscheinlichkeiten mit den Iterationen?
+\item Wie viele Iterationen scheinen Ihnen in diesem Fall sinnvoll?
+\end{itemize}
+
+\vspace{0.5cm} 
+
+\begin{table}[h] 
+\begin{center} 
+\begin{tabular}{|l|l|l|l|l|l|l|l|} \hline 
+DE & EN & init & iteration 1 & iteration 2 & iteration 3 & \ldots & iteration? \\  \hline 
+Haus & house & & & & & & \\  \hline 
+Haus & the & & & & & & \\  \hline 
+das & house & & & & & & \\  \hline  
+das & the & & & & & & \\  \hline  
+das & book & & & & & & \\  \hline  
+ein & a & & & & & & \\  \hline  
+ein & book & & & & & & \\  \hline  
+Buch & the & & & & & & \\  \hline  
+Buch & a & & & & & & \\  \hline  
+Buch & book & & & & & & \\  \hline 
+\end{tabular}
+ \end{center}
+\end{table}
+
+
+\end{enumerate}
+
+\newpage
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{document}
+

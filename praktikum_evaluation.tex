@@ -1,0 +1,432 @@
+\documentclass[12pt,fleqn]{article}
+\usepackage{a4wide}
+\usepackage{ngerman}
+%\usepackage{umlaut}
+%\usepackage[dvips]{graphicx}
+\usepackage[utf8]{inputenc}
+\usepackage[]{listings}
+\lstset{literate=%
+    {Ö}{{\"O}}1
+    {Ä}{{\"A}}1
+    {Ü}{{\"U}}1
+    {ß}{{\ss}}1
+    {ü}{{\"u}}1
+    {ä}{{\"a}}1
+    {ö}{{\"o}}1
+    {~}{{\textasciitilde}}1
+}
+% \usepackage[latin1]{inputenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\usepackage{bm}
+\usepackage[pdftex]{graphicx}
+\DeclareGraphicsExtensions{.ps.gzbody,.ps, .eps.gzbody, .eps}
+\DeclareGraphicsRule{.ps.gzbody}{eps}{.ps.gzheader}{`gzcat #1}
+\DeclareGraphicsRule{.eps.gzbody}{eps}{.eps.gzheader}{`gzcat #1}
+\usepackage{color}
+
+\usepackage{vmargin}
+\setpapersize{A4}
+\setmarginsrb{2.0cm}{1.5cm}{2.5cm}{2cm}{1.2\baselineskip}{1cm}{1.2\baselineskip}{0cm}
+\newcommand{\mpraktikum}{\textbf{MT Praktikum - Evaluation} } 
+
+\newcommand{\mhead}{\pagestyle{myheadings}
+        \markright{\underline{\textsf{\mpraktikum - \today  -  \hfill Eunah Cho, KIT, eunah.cho@kit.edu}}}}
+
+\newcommand{\mlogo}{ \sffamily \vspace*{-10mm}
+  \begin{minipage}{2cm}
+    \includegraphics[scale=0.3]{Bilder/KIT.jpg}
+  \end{minipage}
+  \hfill
+  \begin{minipage}{10.5cm}
+    \textsf{\large{Karlsruhe Institute of Technology}} \\[0.2ex]
+    \textsf{\large{Dr. Eunah Cho}}\\  
+    \textsf{\large{Institute for Anthropomatics and Robotics, Interactive Systems Labs}}\\[0.2ex]  
+    \textsf{eunah.cho@kit.edu} 
+  \end{minipage}
+  \rmfamily
+  \vspace*{2cm}
+
+   \centerline{\Large \mpraktikum } 
+   \vspace{1ex}
+   \centerline{\Large \today}
+  } 
+\setlength{\parindent}{0cm}
+\setlength{\unitlength}{1cm}  
+\addtolength{\marginparsep}{3mm}
+\sloppy 
+
+\begin{document}
+\thispagestyle{empty}
+
+
+\mhead
+
+\mlogo
+
+\vspace{2cm} 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \loes \medskip \\   % Signalverarbeitung
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Um die Aufgaben auszuführen, können Sie Ihre Daten in folgendem Verzeichnis speichern: 
+\texttt{/project/smtstud/ss17/systems/USERNAME/} 
+
+\vspace{0.5cm} 
+Wir werden uns einige der Übersetzungen anschauen, die beim Workshop for Statistical Machine Translation 2010 Shared Translation Task eingereicht wurden.
+(\texttt{http://www.statmt.org/wmt10/translation-task.html})
+
+\vspace{0.5cm} 
+Im Verzeichnis: \texttt{/project/smtstud/ss17/data/wmt10-xlats/} 
+liegen Übersetzungen von vier Deutsch-Englisch-Übersetzungssystemen (in jeweils zwei Formaten). Sie sind nach BLEU an deutlich unterschiedlichen Plätzen der Rangliste.
+
+\vspace{0.5cm} 
+Die passenden Quelldaten sind hier:
+
+\texttt{/project/smtstud/ss17/data/wmt10-xlats/ref/wmt10-newssyscombtest2010-src.de.sgm} 
+
+\vspace{0.5cm} 
+Bitte melden Sie sich nach Abschluss jeder Aufgabe, sodass wir ausschließen können, dass Sie mit fehlerhaften Dateien weitermachen.
+
+\vspace{0.5cm} 
+\begin{enumerate}
+
+\item \textbf{Manual Evaluation} 
+
+\vspace{0.5cm} 
+Unter dem folgenden Link können Sie an der Manuellen Evaluation teilnehmen (verwenden Sie maneval als Passwort): 
+
+http://www.eSurveysPro.com/Survey.aspx?id=59d42ecb-8492-43c6-abd8-49ebc5f83549
+
+\vspace{0.5cm} 
+\begin{enumerate} 
+\item Sehen Sie sich die vier Übersetzungen auf der Webseite an.
+
+\vspace{0.5cm} 
+\begin{itemize} 
+\item Können Sie die schlechteste Übersetzung identifizieren? 
+\item Welche halten Sie für die beste Übersetzung?
+\end{itemize} 
+
+\vspace{0.5cm} 
+Bei Evaluationen gibt es (unter anderen) zwei Hauptmethoden, automatische Übersetzungen manuell bewerten zu lassen: Punkte für Adequacy und Fluency vergeben oder Ranking von Systemen.
+
+\vspace{0.5cm} 
+\item Vergeben Sie Punkte für Adequacy (wie adäquat ist der Inhalt wiedergegeben) und Fluency (wie flüssig liest sich die Übersetzung?)
+
+\vspace{0.5cm} 
+\item Vergeben Sie einen Rang (1-4) für jedes System
+
+\begin{itemize} 
+\item Finden Sie diese Aufgabe schwierig? Wieso?
+\item Denken Sie heute haben alle dieselben Punkte und Rankings vergeben? 
+\item Wie geht man bei einer Evaluation mit diesem Problem um?
+\end{itemize} 
+\end{enumerate} 
+
+\vspace{0.5cm} 
+\item \textbf{BLEU score} 
+
+\vspace{0.5cm} 
+Kopieren Sie sich die Übersetzungen im sgml-Format der vier Systeme in Ihr Verzeichnis.
+
+\texttt{cp /project/smtstud/ss17/data/wmt10-xlats/*.sgm .} 
+
+\vspace{0.5cm} 
+Das von NIST herausgegebene offizielle BLEU evaluation script finden Sie hier:
+
+\texttt{/project/smtstud/ss17/bin/mteval-v11a-cmufix\_b.pl} 
+
+\vspace{0.5cm} 
+Rufen Sie das Script mit der Option -h auf und sehen Sie sich die Ausgabe an.
+
+\vspace{0.5cm} 
+\begin{enumerate} 
+\item Verwenden Sie das Script, um die BLEU und NIST Scores für alle vier Systeme zu berechnen.
+
+\vspace{0.5cm} 
+reference: /project/smtstud/ss17/data/wmt10-xlats/ref/wmt10-newssyscombtest2010-ref.en.sgm
+
+source:     
+/project/smtstud/ss17/data/wmt10-xlats/ref/wmt10-newssyscombtest2010-src.de.sgm
+
+test:            alle vier *.sgm files (aus: \texttt{/project/smtstud/ss17/data/wmt10-xlats/} )
+
+\vspace{0.5cm} 
+Verwenden sie folgende Optionen für alle evaluation runs:
+
+\vspace{0.5cm} 
+\begin{enumerate} 
+\item Berechnen Sie BLEU und NIST Score
+\item Berechnen Sie den Score case insensitiv
+\item Verwenden Sie die BLEU text normalization method
+\end{enumerate} 
+
+\vspace{0.5cm} 
+\begin{itemize} 
+\item Wie hoch ist der BLEU und NIST Score für die vier Systeme?
+\item Was bedeuten Precision und Length Penalty des BLEU scores?
+\item Sieht das automatische Ranking so aus, wie Sie es erwartet haben?
+\item Wie wird der BLEU Score aus den n-gram matches berechnet?
+\item Was ist der Unterschied zwischen dem Individual und dem Cumulative score?
+\end{itemize} 
+
+\begin{table}[h] 
+ \begin{center} 
+\begin{tabular}{|p{2cm}|p{2.5cm}|p{2.5cm}|p{2.5cm}|p{2.5cm}|} \hline 
+ System & NIST & BLEU & Prec. & LP \\  \hline 
+DFKI & & & & \\ \hline 
+JHU & & & & \\ \hline 
+KIT & & & & \\ \hline 
+RWTH & & & & \\ \hline 
+\end{tabular}
+ \end{center}
+\end{table}
+
+\vspace{0.5cm} 
+\item Evaluieren Sie unser System (kit) mit der Option mit Unterscheidung von Groß- und Kleinschreibung.
+
+\vspace{0.5cm} 
+\begin{itemize} 
+\item Wie unterscheidet sich der Score und warum?
+\end{itemize} 
+
+\vspace{0.5cm} 
+\item Evaluieren Sie unser System (kit) nur für BLEU auf Dokumentlevel:
+
+\begin{table}[h] 
+ \begin{center} 
+\begin{tabular}{l} 
+/project/smtstud/ss17/bin/mteval-v11a-cmufix\_b.pl  \\ 
+-r /project/smtstud/ss17/data/wmt10-xlats/ref/wmt10-newssyscombtest2010-ref.en.sgm  \\ 
+-s /project/smtstud/ss17/data/wmt10-xlats/ref/wmt10-newssyscombtest2010-src.de.sgm  \\ 
+-t ./newssyscombtest2010.de-en.kit.sgm  \\ 
+-b -m b -d 1    $>$ \&  kit.doc-eval.log \\ 
+\end{tabular}
+ \end{center}
+\end{table}
+
+
+\vspace{0.5cm} 
+\begin{itemize} 
+\item Wie kann es sein, dass ein Dokument einen Score von Null hat?
+\end{itemize} 
+
+\vspace{0.5cm} 
+Finden Sie das Dokument mit dem höchsten und mit dem niedrigsten BLEU Score (ignorieren Sie das Dokument mit Score Null) und lesen Sie die Übersetzung.
+
+\vspace{0.5cm} 
+\begin{itemize} 
+\item Lässt sich der unterschiedliche Score nachvollziehen?
+\item Spekulieren Sie über die Ursachen für die unterschiedliche Qualität der Übersetzungen.
+\end{itemize} 
+
+\end{enumerate} 
+
+\vspace{0.5cm} 
+\item \textbf{TER Score} 
+
+\vspace{0.5cm} 
+TER steht für Translation Error Rate. Die TER ist das Verhältnis von Fehlern in der Hypothese zur Anzahl von Wörtern in der Referenzübersetzung. Die Fehler setzen sich aus Insertions, Deletions, Substitutions und Shifts von Wörtern zusammen.
+
+\vspace{0.5cm} 
+\begin{enumerate} 
+\item Berechnen Sie die Translation Error Rate für den ersten Satz der Übersetzung unseres Systems:
+
+
+\vspace{0.5cm} 
+\begin{itemize} 
+ \item Wie viele Editieraktionen brauchen Sie, um aus der Hypothese die Referenz zu machen?
+\end{itemize}
+
+\begin{table}[h] 
+ \begin{center} 
+\begin{tabular}{|l|c|c|c|c|c|} \hline 
+ref: & lack of snow & in & mountains & causes problems & for hoteliers \\  \hline 
+& & & & &  \\ \hline 
+hyp: & lack of snow & on the & mountains & has bedeviled & the hotel owners \\ \hline 
+\end{tabular}
+ \end{center}
+\end{table}
+
+\vspace{0.5cm} 
+Rufen Sie das Programm zur Berechnung des TER Scores für diese Übersetzung auf:
+
+/project/smtstud/ss17/bin/tercom\_v6b.pl -h $<$hypothesis-file$>$ -r $<$reference-file$>$ -i sgm –N \&
+(Laufzeit c.a. 5Min)
+
+\vspace{0.5cm} 
+\item Noch während das Programm läuft, können Sie sich die Datei \textbf{newssyscombtest2010.de-en.kit.sgm.sys.pra} einmal ansehen.
+
+\vspace{0.5cm} 
+\begin{itemize} 
+ \item Haben Sie die TER des ersten Satzes richtig berechnet?
+\item Ist es möglich dass die Fehlerrate auf über 100\% steigt? Wie kann das passieren?
+\end{itemize} 
+
+\vspace{0.5cm} 
+\item Finden Sie Satz ID „idnes.cz/2009/12/11/76492-24“ in der Datei \textbf{newssyscombtest2010.de-en.kit.sgm.sys.pra}. 
+
+Der Quellsatz war: „Wir liegen etwa um fünf Prozent besser als im Vorjahr.“
+
+\vspace{0.5cm} 
+\begin{itemize} 
+\item Wie hoch ist die TER des Satzes?
+\item Welche Fehlerrate hätten Sie (als Mensch) vergeben, wenn Sie sich nicht die Referenz sondern den Quellsatz zum Vergleich ansehen?
+\item Wie kann man diesem Problem teilweise entgegenwirken?
+\end{itemize} 
+
+\vspace{0.5cm} 
+\item In der Datei newssyscombtest2010.de-en.kit.sgm.sys.sum\_doc finden Sie die TER scores für alle Dokumente und für das gesamte Testset.
+
+\vspace{0.5cm} 
+\begin{itemize} 
+\item Was ist der TER Score für das kit System?
+\end{itemize} 
+\end{enumerate} 
+
+\vspace{0.5cm} 
+\item \textbf{TER Score - Character based} 
+
+\vspace{0.5cm} 
+
+Schauen Sie sich die folgenden Datein an. Die Datein enthalten die gleichen Sätze aber in einem anderen Format.
+
+\vspace{0.5cm}  
+\textit{Referenz: } \\ 
+/project/smtstud/ss17/data/wmt16-ende/newstest2015-ende-ref.de.sgm \\ 
+/project/smtstud/ss17/data/wmt16-ende/newstest2015-ende-ref.de 
+
+\vspace{0.5cm} 
+\textit{Hypothese: } \\ 
+/project/smtstud/ss17/data/wmt16-ende/newstest2015-ende.kit.de.sgm \\ 
+/project/smtstud/ss17/data/wmt16-ende/newstest2015-ende.kit.de 
+
+
+\vspace{0.5cm} 
+Kopieren Sie sie in ihr Verzeichniss. \\ 
+cp /project/smtstud/ss17/data/wmt16-ende/newstest2015-ende-ref.de.sgm .  \\
+cp /project/smtstud/ss17/data/wmt16-ende/newstest2015-ende-ref.de .  \\ 
+cp /project/smtstud/ss17/data/wmt16-ende/newstest2015-ende.kit.de.sgm . \\ 
+cp /project/smtstud/ss17/data/wmt16-ende/newstest2015-ende.kit.de . \\ 
+
+
+\vspace{0.5cm} 
+\begin{enumerate} 
+\item Berechnen Sie die Übersetzungsqualität mittels der character-based TER mit dem folgendem Befehl:
+
+\vspace{0.5cm} 
+\begin{table}[h] 
+ \begin{center} 
+\begin{tabular}{l} 
+python /project/smtstud/ss17/bin/CharacTER.py -r newstest2015-ende-ref.de \\ 
+-o newstest2015-ende.kit.de -v $>$ wmt15\_kit\_charTER.Log \\ 
+\end{tabular}
+ \end{center}
+\end{table}
+
+\vspace{0.5cm} 
+Schauen Sie sich die Ausgabedatei an. 
+
+\vspace{0.5cm} 
+\begin{itemize} 
+\item Welchen char-TER score hat das Dokument? %Welcher Satz hat den besten und schlechtesten char-TER score? Wie hoch ist es? %Do they know how to do it=
+\end{itemize} 
+
+
+\vspace{0.5cm} 
+\item Berechnen Sie die Übersetzungsqualität mittels word-based TER mit dem folgendem Befehl:
+
+\vspace{0.5cm} 
+\begin{table}[h] 
+ \begin{center} 
+\begin{tabular}{l} 
+perl /project/smtstud/ss17/bin/tercom\_v6b.pl -r newstest2015-ende-ref.de.sgm\\
+-h newstest2015-ende.kit.de.sgm -i sgm -N \\ 
+\end{tabular}
+ \end{center}
+\end{table}
+
+\vspace{0.5cm}
+Schauen Sie sich folgende Datei an \texttt{newstest2015-ende.kit.de.sgm.sys.pra} und \texttt{newstest2015-ende.kit.de.sgm.sys.sum\_doc}. 
+\vspace{0.5cm} 
+\begin{itemize} 
+\item Welchen wort-TER score hat das Dokument? %Welcher Satz hat den besten und schlechtesten char-TER score? Wie hoch ist es? %Do they know how to do it=
+\end{itemize} 
+
+\vspace{0.5cm} 
+\item Vergleichen Sie character-based TER und word-based TER für jeden Satz
+
+\vspace{0.5cm} 
+\begin{itemize} 
+ \item Vergleichen Sie die TER für word-based and char-based für den ersten Satz. Welche ist höher? Wieso? 
+\end{itemize}
+
+\vspace{0.5cm} 
+\textit{Ref: Die Premierminister Indiens und Japans trafen sich in Tokio. } \\ 
+\textit{Hyp: Indiens und Japans Ministerpräsidenten treffen sich in Tokio } \\ 
+
+
+%  \item Vergleichen Sie die TER für word-based and char-based für Satz 658. Welche ist höher? Wieso?
+% \end{itemize}
+% 
+% \vspace{0.5cm} 
+% \textit{Ref: Aber das erklärt noch nicht, warum du es mir vorsingst. } \\ 
+% \textit{Hyp: Aber das immer noch nicht erklären, warum singen Sie es zu mir. } \\ 
+% 
+% 
+% \vspace{0.5cm} 
+% \begin{itemize} 
+%  \item Vergleichen Sie die TER für word-based and char-based für Satz 47. Welche ist höher? Wieso?
+% \end{itemize}
+% 
+% \vspace{0.5cm} 
+% \textit{Ref: Keith Ellison und John Lewis erneuern die Ideale, die Amerika in der Vergangenheit groß gemacht haben und das Versprechen von Demokratie einlösten.  } \\ 
+% \textit{Hyp: Keith Ellison und John Lewis erneuern die Ideale, die Amerika historisch erweitert und konkretisiert die Versprechen der Demokratie. } \\ 
+
+% \vspace{0.5cm} 
+% \begin{itemize} 
+%  \item Vergleichen Sie die TER für word-based and char-based für Satz 716. Welche ist höher? Wieso?
+% \end{itemize}
+% 
+% \vspace{0.5cm} 
+% \textit{Ref: Das hier ist ein vorurteilsfreier Arbeitsplatz.} \\ 
+% \textit{Hyp: Das ist ein vorurteilsfreien workplace. } \\ 
+% 
+% 
+% \vspace{0.5cm} 
+% \begin{itemize} 
+%  \item Vergleichen Sie die TER für word-based and char-based für Satz 378. Welche ist höher? Wieso?
+% \end{itemize}
+% \vspace{0.5cm} 
+% \textit{Ref: Sie schienen einen Autounfall zu erwarten, und das passierte einfach nicht. } \\ 
+% \textit{Hyp: Sie schien zu erwarten, ein Autounfall und es ging nicht recht. } \\ 
+
+% 
+% \vspace{0.5cm} 
+% \begin{itemize} 
+%  \item Vergleichen Sie die TER für word-based and char-based für Satz 103. Welche ist höher? Wieso?
+% \end{itemize}
+% \vspace{0.5cm} 
+% \textit{Ref: Türkei bestellt US-Diplomat wegen Spionageberichts ein } \\ 
+% \textit{Hyp: Turkey Erschafft US-Diplomat Over Spying-Bericht } \\ 
+
+\vspace{0.5cm} 
+\begin{itemize} 
+ \item Vergleichen Sie die TER für word-based and char-based für Satz 380. Welche ist höher? Wieso?
+\end{itemize}
+\vspace{0.5cm} 
+\textit{Ref: Plötzlich war ich im Nationaltheater und ich konnte es kaum glauben. } \\ 
+\textit{Hyp: Plötzlich bin ich am National Theatre, und ich war einfach nicht ganz glauben. } \\ 
+
+\end{enumerate}
+
+\end{enumerate}
+
+\newpage
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{document}
+

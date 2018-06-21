@@ -1,0 +1,320 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%% Klausur-Logo (Deckblatt) %%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\klogo}{ \sffamily \vspace*{-10mm}
+  \begin{minipage}{2cm}
+    \includegraphics[scale=0.3]{Bilder/KIT.jpg}
+  \end{minipage}
+  \hfill
+  \begin{minipage}{10.5cm}
+    %\textsf{{\Large U}\large{NIVERSIT"AT} \Large{K}\large{ARLSRUHE}} \\
+    \textsf{\large{Fakult"at f"ur Informatik}} \\[0.2ex]
+    \textsf{\large{Dr. Eunah Cho}}\\  
+    \textsf{Institut für Anthropomatik (IFA)}    
+  \end{minipage}
+  \rmfamily
+  \vspace*{2cm}
+
+  \centerline{\Huge Tutorial} 
+  \vspace{0.3cm}
+  \centerline{\Large  zur Klausur \glqq Kognitive Systeme\grqq}
+  \vspace{0.3cm}
+  \centerline{\Large am 18. September 2012, 11:00 - 12:00 Uhr}
+  \vspace{1cm} 
+%
+  \begin{itemize}
+  \item Beschriften Sie bitte gleich zu Beginn jedes Lösungsblatt deutlich
+    lesbar mit Ihrem Namen und Ihrer \mbox{Matrikel\-nummer}.
+  \item Diese Aufgabenblätter werden nicht abgegeben. Tragen Sie Ihre
+    Lösung deshalb ausschließlich in die für jede Aufgabe vorgesehenen
+    Bereiche der \underline{Lösungsblätter} ein. 
+    % Lösungen auf separat abgegebenen Blättern werden nicht gewertet.
+  \item Außer Schreibmaterial, Lineal, Geodreieck und Zirkel sind während der Klausur keine Hilfsmittel
+    zugelassen.  Täuschungsversuche durch Verwendung unzulässiger
+    Hilfsmittel führen unmittelbar zum Ausschluss von der Klausur und zur
+    Note \glqq nicht bestanden\grqq. 
+%  \item Soweit in der Aufgabenstellung nichts anderes angegeben ist, tragen
+%    Sie in die Lösungsblätter bitte nur die Endergebnisse ein. Die
+%    Rückseiten der Aufgabenblätter können Sie als \mbox{Konzeptpapier}
+%    verwenden. Weiteres Konzeptpapier können Sie auf Anfrage während der
+%    Klausur erhalten.
+  \item Halten Sie Begründungen oder Erklärungen bitte so kurz wie möglich.
+    (Der auf den Lösungsblättern für eine Aufgabe vorgesehene Platz steht
+    übrigens in keinem Zusammenhang mit dem Umfang einer korrekten Lösung!)
+  \item Die Gesamtpunktzahl beträgt 60 Punkte (+ max. 6 Punkte online). Zum Bestehen der Klausur
+    sind mindestens 20 Punkte aus der Klausur zu erreichen.
+  \item Notieren Sie bitte einen Hinweis auf das Deckblatt der Lösungsblätter, falls Sie Ihre Onlinepunkte nicht im Sommersemester 2012 gesammelt haben. Geben Sie hierbei das Semester an, in welchem Sie die Onlinepunkte gesammelt haben. 
+  \item Verwenden Sie weder Rotstift noch Bleistift. Alle L\"osungen in rot oder mit Bleistift werden nicht gewertet.
+  \end{itemize}
+  \vspace{2cm}
+  \centerline{\large \emph{\textbf{Viel Erfolg!}}}
+  \newpage
+  } % \end Klausur-Logo
+% 
+%%%%%%%%%%%%%%%%%%%%%%%%% Headings (Klausur) %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\khead}{ \pagestyle{myheadings}
+  \markright{\underline{\textsf{Aufgaben zur Klausur \glqq Kognitive Systeme\grqq\  am 18.~September 2012}}}}
+
+%%%%%%%%%%%%%%%%%%%%%%%  Aufgaben-Counter %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcounter{aufgabe} \setcounter{aufgabe}{1}
+\newcommand{\aufg}[2]{{\Large\textbf{Tutorial \theaufgabe} \quad \emph{#1}
+    \hfill (#2 Punkte) \stepcounter{aufgabe}}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%% Lösungs-Logo %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\llogo}{ \sffamily \vspace*{-10mm}
+  \begin{minipage}{2cm}
+    \includegraphics[scale=0.3]{Bilder/KIT.jpg}
+  \end{minipage}
+  \hfill
+  \begin{minipage}{10.5cm}
+    %\textsf{{\Large U}\large{NIVERSIT"AT} \Large{K}\large{ARLSRUHE}} \\
+    \textsf{\large{Fakult"at f"ur Informatik}} \\[0.2ex]
+    \textsf{\large{Prof. Dr. A. Waibel}}\\  
+    \textsf{\large{Prof. Dr. R. Dillmann}}\\[0.2ex]  
+    \textsf{Institut für Anthropomatik (IFA)}    
+  \end{minipage}
+  \rmfamily
+  \vspace*{2cm}
+
+  \centerline{\Huge Lösungsblätter}
+  \centerline{\Large zur Klausur \glqq Kognitive Systeme\grqq } 
+  \vspace{1ex}
+  \centerline{\Large am  18. September 2012,  11:00 - 12:00 Uhr}
+%
+  \begin{table}[htb]
+    \begin{center}
+      \leavevmode
+      \begin{tabular}[t]{|p{5cm}|p{5cm}|p{5cm}|} \hline
+        Name: & Vorname: & Matrikelnummer:\\ & & \\  & & \\ \hline
+      \end{tabular}
+    \end{center}
+  \end{table}
+  \vspace*{-1cm}
+  \renewcommand{\arraystretch}{1.3}
+  \begin{table}[!hb]
+    \begin{center}
+      \leavevmode
+      \begin{tabular}[t]{|l|rl|} \hline
+        Tutorial 2 \hspace{5.5cm} & \hspace{3.5cm} & von 10 Punkten\\ \hline
+        Aufgabe 2 \hspace{5.5cm} & \hspace{3.5cm} & von 10 Punkten\\ \hline 
+        Aufgabe 3 \hspace{5.5cm} & \hspace{3.5cm} & von 10 Punkten\\ \hline
+        Aufgabe 4 \hspace{5.5cm} & \hspace{3.5cm} & von 10 Punkten\\ \hline 
+        Aufgabe 5 \hspace{5.5cm} & \hspace{3.5cm} & von 10 Punkten\\ \hline
+        Aufgabe 6 \hspace{5.5cm} & \hspace{3.5cm} & von 10 Punkten\\ \hline        
+        Online~~~ \hspace{5.5cm} & \hspace{3.5cm} & von 6 Punkten\\ \hline  
+        \hline
+        \multicolumn{3}{c}{ }\\ \hline
+        \textbf{Gesamtpunktzahl:} &  & \\ \hline
+        \multicolumn{3}{c}{ } \\ \hline
+        & \multicolumn{2}{|l|}{\textbf{Note:}}\\\hline
+      \end{tabular}
+    \end{center}
+  \end{table}
+  \newpage
+  } %\end Lösungs-Logo
+
+%%%%%%%%%%%%%%%%%%%%%%%%% Headings (Klausur) %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\lhead}{ \pagestyle{myheadings}
+  \markright{\textsf{Name: \hspace*{4cm} Vorname:\hspace*{3cm}
+        Matr.-Nr.: \hspace*{3cm}}}}
+%%%%%%%%%%%%%%%%%%%%%%%%%% Aufgaben-Counter %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcounter{loesung} \setcounter{loesung}{1} \newcommand{\loes}{{\Large
+    \textbf{Tutorial NMT}} \stepcounter{loesung}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%  Musterlösung-Logo %%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\mlogo}{ \sffamily \vspace*{-10mm}
+  \begin{minipage}{2cm}
+    \includegraphics[scale=0.3]{Bilder/KIT.jpg}
+  \end{minipage}
+  \hfill
+  \begin{minipage}{10.5cm}
+    %\textsf{{\Large U}\large{NIVERSIT"AT} \Large{K}\large{ARLSRUHE}} \\
+    \textsf{\large{Karlsruhe Institute of Technology}} \\[0.2ex]
+    \textsf{\large{Dr. Eunah Cho}}\\  
+    \textsf{\large{Institute for Anthropomatics and Robotics, Interactive Systems Labs}}\\[0.2ex]  
+    \textsf{eunah.cho@kit.edu} 
+  \end{minipage}
+  \rmfamily
+  \vspace*{2cm}
+
+%   \centerline{\Huge Tutorial}
+   \centerline{\Large \textbf{MT Praktikum - Evaluation}  } 
+   \vspace{1ex}
+   \centerline{\Large 13. Feb 2017}
+
+% 
+%   \begin{minipage}{2cm}
+%     \includegraphics[scale=0.3]{Bilder/KIT.jpg}
+%   \end{minipage}
+%   \hfill
+%   \begin{minipage}{10.5cm}
+%     %\textsf{{\Large U}\large{NIVERSIT"AT} \Large{K}\large{ARLSRUHE}} \\
+%     \textsf{\large{Fakult"at f"ur Informatik}} \\[0.2ex]
+%     \textsf{\large{Prof. Dr. A. Waibel}}\\  
+%     \textsf{\large{Prof. Dr. R. Dillmann}}\\[0.2ex]  
+%     \textsf{Institut für Anthropomatik (IFA)}    
+%   \end{minipage}
+%   \rmfamily
+%   \vspace*{2cm}
+% 
+%   \centerline{\Huge Tutorial}
+%   \centerline{\Large CRF  } 
+%   \vspace{1ex}
+%   \centerline{\Large am 18. September 2012,  11:00 - 12:00 Uhr}
+%   \begin{table}[htb]
+%     \begin{center}
+%       \leavevmode
+%       \begin{tabular}[t]{|p{5cm}|p{5cm}|p{5cm}|} \hline
+%         Name: & Vorname: & Matrikelnummer:\\[1ex]
+%         \textsf{\Large Burns} & \textsf{\Large Charles Montgomery} & \textsf{\Large 0000002}\\[1ex] \hline
+%       \end{tabular}
+%     \end{center}
+%   \end{table}
+%   \vspace*{-1cm}
+%   \renewcommand{\arraystretch}{1.3}
+%   \begin{table}[!hb]
+%     \begin{center}
+%       \leavevmode
+%       \begin{tabular}[t]{|l|rl|} \hline
+%         %%\multicolumn{3}{|l|}{ }\\ 
+%         Aufgabe 1 \hspace{5.5cm} & \hspace{3.5cm} & 10 von 10 Punkten\\
+%         \hline
+%         Aufgabe 2 \hspace{5.5cm} & \hspace{3.5cm} & 10 von 10
+%         Punkten\\
+%         \hline 
+%         Aufgabe 3 \hspace{5.5cm} & \hspace{3.5cm} & 10 von 10
+%         Punkten\\
+%         \hline
+%         Aufgabe 4 \hspace{5.5cm} & \hspace{3.5cm} & 10 von 10
+%         Punkten\\
+%         \hline 
+%         Aufgabe 5 \hspace{5.5cm} & \hspace{3.5cm} & 10 von 10
+%         Punkten\\
+%         \hline
+%         Aufgabe 6 \hspace{5.5cm} & \hspace{3.5cm} & 10 von 10
+%         Punkten\\
+%         \hline
+%         Online~~~ \hspace{5.5cm} & \hspace{3.5cm} & 6 von 6 Punkten\\ \hline  
+%         \hline
+%         \multicolumn{3}{c}{ }\\ \hline
+%         \textbf{Gesamtpunktzahl:} &  & 66 von 66 Punkten \\ \hline
+%         \multicolumn{3}{c}{ } \\ \hline
+%         & \multicolumn{2}{|l|}{\textbf{Note:\hspace*{2.5cm} \textsf{1,0}}}\\\hline
+%       \end{tabular}
+%     \end{center}
+%   \end{table}
+%   \newpage
+  } %end M-Logo
+%%%%%%%%%%%%%%%%%%%%%%%%% Headings (Musterlösung) %%%%%%%%%%%%%%%%%%%%%
+\newcommand{\mhead}{\pagestyle{myheadings}
+        \markright{\underline{\textsf{Tutorial - 13.Feb.2017  \hspace{4cm} Eunah Cho, KIT, eunah.cho@kit.edu}}}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\pkt}[1]{\marginpar{\fbox{\textsf{#1 P.}}}}
+\def\Not#1{\overline{\strut #1}}
+\newcommand{\rb}[1]{\raisebox{1.5ex}[-1.5ex]{#1}}
+\newcommand{\rbp}[1]{\raisebox{-1.5ex}[1.5ex]{#1}}
+\newcommand{\rbg}[1]{\raisebox{2.5ex}[-2.5ex]{#1}}
+
+%%%%%%%%%%%%%%%%%%%%%%%% TI-spezifische Definitionen %%%%%%%%%%%%%%%%%%%%
+\newcommand{\mikpro}{$\mu P$ }
+\newcommand{\aktivlow}[1]{$\overline{\mbox{{\sf{#1}}}}$}
+\newcommand{\lowsignal}[1]{$\overline{\mbox{{#1}}}$}
+%
+\newcommand{\mytext}[2]{$\mbox{#1}_{\mbox{#2}}$}
+\newcommand{\bus}[4]{$\mbox{#1}_{\mbox{#2}}-\mbox{#3}_{\mbox{#4}}$}
+\newcommand{\notvar}[1]{$\overline{\mbox{#1}}$}
+%
+\newcommand{\antii}{\leftrightarrow \hspace{-2.2ex}  | \hspace{1.2ex}}
+\newcommand{\anti}{\not\leftrightarrow}
+\newcommand{\aqui}{\leftrightarrow}
+%
+\newcommand{\oa}{\overline{a}}
+\newcommand{\ob}{\overline{b}}
+\newcommand{\oc}{\overline{c}}
+\newcommand{\od}{\overline{d}}
+\newcommand{\oee}{\overline{e}}
+\newcommand{\ox}{\overline{x}}
+\newcommand{\oy}{\overline{y}}
+\newcommand{\oz}{\overline{z}}
+\newcommand{\ow}{\overline{w}}
+\newcommand{\oq}{\overline{q}}
+\newcommand{\ua}{\underline{a}}
+\newcommand{\ub}{\underline{b}}
+%
+\newcommand{\oben}[1]{\overline{#1}}
+\newcommand{\unten}[1]{\underline{#1}}
+%
+\newcommand{\nand}[1]{\mbox{NAND}_{#1}}
+\newcommand{\nor}[1]{\mbox{NOR}_{#1}}
+%
+\renewcommand{\figurename}{Bild}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% PS mit LaTeX  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newenvironment{Abbildung}[2]{\edef\MyCaption{#1}\edef\MyRef{#2}%
+  \begin{figure}[h!]\begin{center}}{%
+      \caption{\MyCaption}\label{\MyRef}\end{center}\end{figure}}
+% EpsAbbildung
+\newcommand{\EpsAbbildung}[4]{%
+  \begin{Abbildung}{#2}{#3}%
+    \includegraphics[#4]{#1}%
+  \end{Abbildung}}
+% PsTexAbbildung 
+\newcommand{\PsTexAbbildung}[3]{%
+  \begin{Abbildung}{#2}{#3}%
+    \begin{picture}(0,0)%
+      \includegraphics{#1.pstex}%
+    \end{picture}%
+    \input #1.pstex_t%
+  \end{Abbildung}}
+%%%%%%%%%%%%%%%%%%%%%%%%%
+\newenvironment{AbbildungOhneCaption}{
+  \begin{figure}[h!]\begin{center}}{%
+    \end{center}\end{figure}}%
+%
+\newcommand{\EpsAbbildungOhneCaption}[2]{%
+  \begin{AbbildungOhneCaption}%
+    \includegraphics[#2]{#1}%
+  \end{AbbildungOhneCaption}}
+% 
+\newcommand{\PsTexAbbildungOhneCaption}[1]{%
+  \begin{AbbildungOhneCaption}%
+    \begin{picture}(0,0)%
+      \includegraphics{#1.pstex}%
+    \end{picture}%
+    \input #1.pstex_t%
+  \end{AbbildungOhneCaption}}%
+%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\EpsAbbildungOhneCenter}[1]{%
+  \begin{figure}%
+    \includegraphics{#1}%
+  \end{figure}}
+% 
+\newcommand{\PsTexAbbildungOhneCenter}[1]{%
+  \begin{picture}(0,0)%
+    \includegraphics{#1.pstex}%
+  \end{picture}%
+  \input #1.pstex_t%
+  }
+
+%%% Trennungsliste
+\hyphenation{Prim-implikant Prim-implikat Kern-prim-implikant
+  Kern-prim-implikat Distributiv-gesetz Hasard-fehler Pipe-lining}
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: t
+%%% End: 
+
+
+
+
+
+
+

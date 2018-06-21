@@ -1,0 +1,196 @@
+\documentclass[12pt,fleqn]{article}
+\usepackage{a4wide}
+\usepackage{ngerman}
+%\usepackage{umlaut}
+%\usepackage[dvips]{graphicx}
+\usepackage[utf8]{inputenc}
+\usepackage[]{listings}
+\lstset{literate=%
+    {Ö}{{\"O}}1
+    {Ä}{{\"A}}1
+    {Ü}{{\"U}}1
+    {ß}{{\ss}}1
+    {ü}{{\"u}}1
+    {ä}{{\"a}}1
+    {ö}{{\"o}}1
+    {~}{{\textasciitilde}}1
+}
+% \usepackage[latin1]{inputenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\usepackage{bm}
+\usepackage[pdftex]{graphicx}
+\DeclareGraphicsExtensions{.ps.gzbody,.ps, .eps.gzbody, .eps}
+\DeclareGraphicsRule{.ps.gzbody}{eps}{.ps.gzheader}{`gzcat #1}
+\DeclareGraphicsRule{.eps.gzbody}{eps}{.eps.gzheader}{`gzcat #1}
+\usepackage{color}
+
+\usepackage{vmargin}
+\setpapersize{A4}
+\setmarginsrb{2.0cm}{1.5cm}{2.5cm}{2cm}{1.2\baselineskip}{1cm}{1.2\baselineskip}{0cm}
+\newcommand{\mpraktikum}{\textbf{MT Praktikum - NMT} } 
+
+\newcommand{\mhead}{\pagestyle{myheadings}
+        \markright{\underline{\textsf{\mpraktikum - \today  -  \hfill Eunah Cho, KIT, eunah.cho@kit.edu}}}}
+
+\newcommand{\mlogo}{ \sffamily \vspace*{-10mm}
+  \begin{minipage}{2cm}
+    \includegraphics[scale=0.3]{Bilder/KIT.jpg}
+  \end{minipage}
+  \hfill
+  \begin{minipage}{10.5cm}
+    \textsf{\large{Karlsruhe Institute of Technology}} \\[0.2ex]
+    \textsf{\large{Dr. Eunah Cho}}\\  
+    \textsf{\large{Institute for Anthropomatics and Robotics, Interactive Systems Labs}}\\[0.2ex]  
+    \textsf{eunah.cho@kit.edu} 
+  \end{minipage}
+  \rmfamily
+  \vspace*{2cm}
+
+   \centerline{\Large \mpraktikum } 
+   \vspace{1ex}
+   \centerline{\Large \today}
+  } 
+\setlength{\parindent}{0cm}
+\setlength{\unitlength}{1cm}  
+\addtolength{\marginparsep}{3mm}
+\sloppy 
+
+\begin{document}
+\thispagestyle{empty}
+
+
+\mhead
+
+\mlogo
+
+\vspace{2cm} 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \loes \medskip \\   % Signalverarbeitung
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Um die Aufgaben auszuführen, können Sie Ihre Daten in folgendem Verzeichnis speichern: 
+\texttt{/project/smtstud/ss17/systems/USERNAME/} 
+
+\vspace{0.5cm} 
+We are going to use a test data in German. Copy this file into your directory. 
+
+\vspace{0.5cm}
+\texttt{/project/smtstud/ss17/data/nmt/test.de} 
+
+\vspace{0.5cm} 
+Later you are going to preprocess them. Copy it into your directory.  
+
+\vspace{0.5cm} 
+\texttt{/project/smtstud/ss17/bin/Preprocess.de.sh} \\
+
+\vspace{0.5cm} 
+
+\textbf{NMT: Preprocess and sub-word units} \\ 
+\begin{enumerate}
+
+
+\item We are going to load a translation model and translate a test set from German to English. Preprocess the test data using the script. 
+
+
+\begin{itemize} 
+ \item Check which files are created. What is the difference? 
+\end{itemize}
+
+
+
+\item  Copy the sub-word operation script into your directory and run it for the preprocessed file. 
+
+\texttt{/project/smtstud/ss17/bin/BPE.sh} 
+
+\begin{itemize} 
+ \item Which words are split and how?
+\end{itemize}
+
+\begin{table}[ht] 
+ \begin{center} 
+\begin{tabular}{p{3cm}|p{5cm}} 
+ Word & How it is split \\  \hline 
+ & \\ 
+ & \\ 
+ & \\ 
+ & \\ 
+ & \\ 
+ & \\ 
+ & \\ 
+ & \\ 
+\end{tabular}
+
+ \end{center}
+
+\end{table}
+
+
+\item Now you have the preprocessed file to translate. Log into rg3hpc1, and then to i13hpc28 or i13hpc29. Once you are in either i13hpc28 or i13hpc29, Move back into your working directory. Copy the script for translation into your directory, and run the translation. It may take some minutes to load the model. 
+
+\texttt{/project/smtstud/ss17/bin/Translate.sh} 
+
+\item Preprocess the English reference data the same way. Copy the files and preprocess it. 
+
+\texttt{/project/smtstud/ss17/data/nmt/test.en}  \\ 
+\texttt{/project/smtstud/ss17/bin/Preprocess.en.sh} \\ 
+
+\item Measure the performance in BLEU. Copy the file, and run it as ./BLEU\_evaluation.sh hypfile reffile. 
+
+\texttt{/project/smtstud/ss17/bin/BLEU\_evaluation.sh} \\ 
+
+\begin{itemize} 
+ \item How high is the BLEU score? 
+\end{itemize}
+
+\item Copy an example file into your directory. 
+
+\texttt{/project/smtstud/ss17/data/nmt/example.de} 
+
+Feel free to change text in the text. Apply the same steps before (Process - BPE) and translate it. How is the translation? 
+
+\end{enumerate} 
+
+\textbf{Characteristics of NMT} \\ 
+
+\begin{enumerate} 
+\item Copy another example file into your directory. 
+
+\texttt{/project/smtstud/ss17/data/nmt/test\_shift.de} 
+
+It contains partial test sentences, whose words are appended line by line. Apply proprocessing and BPE in order to translate it. 
+
+\begin{itemize} 
+\item How is the translation for partial sentences? 
+\end{itemize} 
+
+
+
+\item Copy another example file into your directory. 
+
+\texttt{/project/smtstud/ss17/data/nmt/lecturetest.de} 
+
+It contains lecture excerpts. Apply preprocessing and BPE in order to translate it. 
+
+\begin{itemize} 
+ \item How is the translation? What is the most distinctive characteristics? Why? 
+\end{itemize}
+
+\end{enumerate}
+\newpage
+\textbf{Attention in NMT} \\ 
+\begin{enumerate} 
+ \item We are going to examine attention matrix. Copy the following test set into your directory. 
+ 
+ \texttt{/project/smtstud/ss17/data/nmt/test16.head.de} 
+ 
+ Run \texttt{/project/smtstud/ss17/bin/Attention.sh} for the input file \texttt{test16.head.de}. This may take upto several minutes. Look into the file \texttt{test16.head.de.alignment} for the attention values. 
+ 
+ \item You can create a drawing based on attentional values. 
+\end{enumerate}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{document}
+
