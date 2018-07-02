@@ -32,7 +32,7 @@
 \newcommand{\mpraktikum}{\textbf{MT Praktikum - Word Embeddings \& NNLM} } 
 
 \newcommand{\mhead}{\pagestyle{myheadings}
-        \markright{\underline{\textsf{\mpraktikum - \today  -  \hfill Eunah Cho, KIT, eunah.cho@kit.edu}}}}
+        \markright{\underline{\textsf{\mpraktikum - \today  -  \hfill Ngoc-Quan Pham, KIT, eunah.cho@kit.edu}}}}
 
 \newcommand{\mlogo}{ \sffamily \vspace*{-10mm}
   \begin{minipage}{2cm}
@@ -41,9 +41,9 @@
   \hfill
   \begin{minipage}{10.5cm}
     \textsf{\large{Karlsruhe Institute of Technology}} \\[0.2ex]
-    \textsf{\large{Dr. Eunah Cho}}\\  
+    \textsf{\large{Ngoc-Quan Pham}}\\  
     \textsf{\large{Institute for Anthropomatics and Robotics, Interactive Systems Labs}}\\[0.2ex]  
-    \textsf{eunah.cho@kit.edu} 
+    \textsf{ngoc.pham@kit.edu} 
   \end{minipage}
   \rmfamily
   \vspace*{2cm}
@@ -71,19 +71,59 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 Um die Aufgaben auszuführen, können Sie Ihre Daten in folgendem Verzeichnis speichern: 
-\texttt{/project/smtstud/ss17/systems/USERNAME/} 
-
-\vspace{0.5cm} 
-We are going to use a pre-trained word vectors. Copy this word vector file into your directory. 
+\texttt{/project/smtstud/ss18/systems/USERNAME/} 
 
 \vspace{0.5cm}
-\texttt{/project/smtstud/ss17/data/vec/Wemb.en.filtered.lowered} 
+\textbf{Environment Setup}
+First we need to have access to our cluster enviroment. 
+
+If you can use the available machines in the pool room, please log in with username: smt[30-45] (any number between 30 to 45, for example smt35), password=123456.
+
+If you use your own laptop, you can directly connect to the cluster using ssh, using this command:
+
+ssh smt[30-45]@i13hpc1.ira.uka.de
+
+\vspace{0.5cm}
+
+For today's work we are going to need better computing power. Please log into i13hpc28 or i13hpc29, using the following command (once you are in a terminal of the pool room's computers or after ssh from your own computer):
+
+ssh i13hpc28  \textbf{or}
+ssh i13hpc29
+
+From there, go to the working directory
+cd /project/smtstud/ss18/systems/ 
+
+\vspace{0.5cm}
+Now enter the virtual environment which is pre-installed using 2 commands:
+
+bash 
+
+. /project/smtstud/ss18/commands/setup.sh
+
+Finally, create a working directory with 
+
+\texttt{mkdir -p /project/smtstud/ss18/systems/USERNAME/} 
+
+(USERNAME is anything you like (smtxx or your name)
 
 \vspace{0.5cm} 
-Later you are going to calculate the cosine similarity of words represented in vector space. Copy the script into your directory. 
+We are going to use a pre-trained word vectors. Link these word vector files into your directory (don't copy because these are pretty big)
+
+\vspace{0.5cm}
+\texttt{/project/smtstud/ss18/data/vec/Wemb.en.filtered.lowered} 
+\texttt{/project/smtstud/ss18/data/vec/GoogleNews-vectors-negative300.bin} 
+
+You can link using this command (the final dot means ``the current directory'')\\
+\texttt{ln -s /project/smtstud/ss18/data/vec/Wemb.en.filtered.lowered .} \\ 
+\texttt{ln -s /project/smtstud/ss18/data/vec/GoogleNews-vectors-negative300.bin .} \\
+
 
 \vspace{0.5cm} 
-\texttt{/project/smtstud/ss17/bin/vector.py} \\
+Later you are going to calculate the cosine similarity of words represented in vector spaces. Copy the script into your directory. 
+
+\vspace{0.5cm} 
+\texttt{/project/smtstud/ss18/commands/vector.py} \\
+\texttt{/project/smtstud/ss18/commands/vector\_big.py} \\
 
 \vspace{0.5cm} 
 \textbf{A. Word Embeddings} \\ 
@@ -118,7 +158,7 @@ Words are filtered under the topic ``Research''. \\
 
 
 
-\item We are going to examine pre-trained 200-dimensional vectors for 10K English vocabulary.  
+\item You are provided with 2 word vector files. The \textit{Wemb.en.filtered.lowered} is a set of pre-trained 200-dimensional vectors for 10K English vocabulary, that we will mostly use for small experiments. The other file, \textit{GoogleNews-vectors-negative300.bin} contains 3 billion words, you can use it with the exercise if you want. 
 % \texttt{head -n 2 Wemb.en.filtered.lowered | tail -n 1 } \\ \\ 
 Examine the format of the file.  
 % It consists of a word and its vector representation in a 200-dimensional space. \\ 
@@ -127,10 +167,12 @@ Word vectors represent semantic and syntactic relationship between words. For ex
 
 \begin{itemize} 
  \item Check vector values of the word \textit{lady} and \textit{woman}. 
+ \item You can do that using the command \textit{grep lady Wemb.en.filtered.lowered}
+ \item Write out the first 4 and the last values of the vectors in the table.
 \end{itemize}
 
 
-\begin{table}[h] 
+\begin{table}[htb!  ] 
  \begin{center} 
   \begin{tabular}{l|p{2cm}|p{2cm}|p{2cm}|p{2cm}|l|p{2cm}}
    word & $v_0$ & $v_1$ & $v_2$ & $v_3$ & ... & $v_{199}$ \\  \hline 
@@ -145,7 +187,7 @@ woman & & & & ... & \\
 % \texttt{lady: 0.01361018 0.04732877 -0.00540839 -0.09349286 ..... -0.05747397 0.01850754} \\ 
 % \texttt{woman: 0.07737311 0.04137088 -0.01775537 -0.13916844 ..... -0.02483073 -0.02679169} \\ 
 
-% As you can see, it is hard for us to understand the vector representation as it is. Therefore, we are going to calculate their distance using a script. 
+As you can see, it is hard for us to understand the vector representation as it is. Therefore, we are going to calculate their distance.
 
 \item We can check the similarity of the words by loading the vectors and calculating the distance between them. \\ 
 
@@ -155,7 +197,7 @@ woman & & & & ... & \\
 \begin{itemize} 
  \item What is the most similar word to the word \textit{lady}? What is their similarity? 
  \item Find the most similar word for following words and fill the table. 
- \begin{table}[h] 
+ \begin{table}[htb!] 
   \begin{center} 
      \begin{tabular}{c|c|c}
       Input word & Most similar word & Similarity \\  \hline 
@@ -169,7 +211,7 @@ woman & & & & ... & \\
   \end{center}
 \end{table}
 \item Find the similarity score of following words and fill the table. When is the similarity score high? 
-\begin{table}[h] 
+\begin{table}[htb!] 
    \begin{center} 
          \begin{tabular}{c|c|c}
           word A & word B & similarity \\  \hline 
@@ -183,17 +225,70 @@ woman & & & & ... & \\
 
 \item Find the word which fits in the semantic relationship.
 
-\begin{table}[h] 
+\begin{table}[htb!] 
    \begin{center} 
          \begin{tabular}{lc}
-man : husband = woman :& wife \\ 
+man : husband = woman :&  \\ 
 grass : green = sky : & \\ 
 tree : forest = water : & \\ 
          \end{tabular}
    \end{center}
 \end{table}
 \end{itemize}
+
+\item We can repeat the above experiment using Google's 3 billion vectors. \\ 
+
+\texttt{python vector\_big.py} \\ 
+
+\begin{itemize} 
+ \item What is the most similar word to the word \textit{lady}? What is their similarity? 
+ \item Find the most similar word for following words and fill the table. 
+ \begin{table}[htb!] 
+  \begin{center} 
+     \begin{tabular}{c|c|c}
+      Input word & Most similar word & Similarity \\  \hline 
+      lady & & \\ 
+      book & & \\ 
+      mother & & \\ 
+      school & & \\ 
+      great & & \\ 
+      tree & & \\ 
+     \end{tabular}
+  \end{center}
+\end{table}
+\item Find the similarity score of following words and fill the table. When is the similarity score high? 
+\begin{table}[htb!] 
+   \begin{center} 
+         \begin{tabular}{c|c|c}
+          word A & word B & similarity \\  \hline 
+          father & dad &  \\ 
+          human & animal &  \\ 
+          apple & big & \\ 
+          soccer & football & \\ 
+         \end{tabular}
+   \end{center}
+\end{table}
+
+\item Find the word which fits in the semantic relationship.
+
+\begin{table}[htb!] 
+   \begin{center} 
+         \begin{tabular}{lc}
+man : husband = woman :&  \\ 
+grass : green = sky : & \\ 
+tree : forest = water : & \\ 
+king : queen = man : & \\ 
+paris : france = rome : & \\
+         \end{tabular}
+   \end{center}
+\end{table}
+\end{itemize}
+
+Do you notice any difference between two vector spaces ? 
+
 \end{enumerate}  
+
+
 % 
 % \item There are three options. \\ 
 % \begin{figure} [h] 
@@ -280,7 +375,7 @@ tree : forest = water : & \\
 \begin{enumerate} 
 
 \item Take a look into the log file of training a neural language model. \\ 
-\texttt{/project/smtstud/ss17/data/rnnlm/Train.log} \\ 
+\texttt{/project/smtstud/ss18/data/rnnlm/Train.log} \\ 
 
 \begin{itemize} 
  \item How is the perplexity score for development data? 
@@ -289,7 +384,7 @@ tree : forest = water : & \\
 
 
 \item There are four RNN language models trained. You can find them in \\ 
-\texttt{/project/smtstud/ss17/models/rnnlms/} 
+\texttt{/project/smtstud/ss18/models/rnnlms/} 
 
 All models are trained with top 5,000 words. 
 \begin{enumerate} 
@@ -301,7 +396,7 @@ All models are trained with top 5,000 words.
 
 We are going to apply each LM on the test data. 
 
-\texttt{/project/smtstud/ss17/data/rnnlm/test.de} \\ 
+\texttt{/project/smtstud/ss18/data/rnnlm/test.de} \\ 
 
 \begin{itemize} 
  \item Which sentences in the test data should have lower perplexity? Why? 
@@ -311,7 +406,7 @@ We are going to apply each LM on the test data.
 
 \item Copy the following script into your directory and run it in your directory. 
 
-\texttt{/project/smtstud/ss17/bin/rnnlm/Test.back\_forward.sh} 
+\texttt{/project/smtstud/ss18/bin/rnnlm/Test.back\_forward.sh} 
 
 The script calculates perplexity for each sentence using the backward and the forward LM. 
 
@@ -338,7 +433,7 @@ die Marklerin ist nett . & & \\ \hline
 
 \item For the same test data, try an LM that has half-sized dimensions and another LM that has only one layer. Copy the following script into your directory and run it in your directory.
 
-\texttt{/project/smtstud/ss17/bin/rnnlm/Test.halfdim\_onelayer.sh} 
+\texttt{/project/smtstud/ss18/bin/rnnlm/Test.halfdim\_onelayer.sh} 
 
 \begin{itemize} 
  \item How is the perplexity for each sentence using each model? 

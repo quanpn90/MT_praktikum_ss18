@@ -32,7 +32,7 @@
 \newcommand{\mpraktikum}{\textbf{MT Praktikum - Evaluation Solution} } 
 
 \newcommand{\mhead}{\pagestyle{myheadings}
-        \markright{\underline{\textsf{\mpraktikum - \today  -  \hfill Eunah Cho, KIT, eunah.cho@kit.edu}}}}
+        \markright{\underline{\textsf{\mpraktikum - \today  -  \hfill Ngoc-Quan Pham, KIT, ngoc.pham@kit.edu}}}}
 
 \newcommand{\mlogo}{ \sffamily \vspace*{-10mm}
   \begin{minipage}{2cm}
@@ -41,9 +41,9 @@
   \hfill
   \begin{minipage}{10.5cm}
     \textsf{\large{Karlsruhe Institute of Technology}} \\[0.2ex]
-    \textsf{\large{Dr. Eunah Cho}}\\  
+    \textsf{\large{Ngoc-Quan Pham}}\\  
     \textsf{\large{Institute for Anthropomatics and Robotics, Interactive Systems Labs}}\\[0.2ex]  
-    \textsf{eunah.cho@kit.edu} 
+    \textsf{ngoc.pham@kit.edu} 
   \end{minipage}
   \rmfamily
   \vspace*{2cm}
@@ -70,7 +70,7 @@
 % \loes \medskip \\   % Signalverarbeitung
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 Um die Aufgaben auszuführen, können Sie Ihre Daten in folgendem Verzeichnis speichern: 
-\texttt{/project/smtstud/ss17/systems/USERNAME/} 
+\texttt{/project/smtstud/ss18/systems/USERNAME/} 
 
 
 
@@ -79,13 +79,13 @@ Wir werden uns einige der Übersetzungen anschauen, die beim Workshop for Statis
 (\texttt{http://www.statmt.org/wmt10/translation-task.html})
 
 \vspace{0.5cm} 
-Im Verzeichnis: \texttt{/project/smtstud/ss17/data/wmt10-xlats/} 
+Im Verzeichnis: \texttt{/project/smtstud/ss18/data/wmt10-xlats/} 
 liegen Übersetzungen von vier Deutsch-Englisch-Übersetzungssystemen (in jeweils zwei Formaten). Sie sind nach BLEU an deutlich unterschiedlichen Plätzen der Rangliste.
 
 \vspace{0.5cm} 
 Die passenden Quelldaten sind hier:
 
-\texttt{/project/smtstud/ss17/data/wmt10-xlats/ref/wmt10-newssyscombtest2010-src.de.sgm} 
+\texttt{/project/smtstud/ss18/data/wmt10-xlats/ref/wmt10-newssyscombtest2010-src.de.sgm} 
 
 \vspace{0.5cm} 
 Bitte melden Sie sich nach Abschluss jeder Aufgabe, sodass wir ausschließen können, dass Sie mit fehlerhaften Dateien weitermachen.
@@ -140,12 +140,12 @@ Da oft sehr verschiedene Punkte oder Rankings vergeben werden, sammelt man für 
 \vspace{0.5cm} 
 Kopieren Sie sich die Übersetzungen im sgml-Format der vier Systeme in Ihr Verzeichnis.
 
-\texttt{cp /project/smtstud/ss17/data/wmt10-xlats/*.sgm .} 
+\texttt{cp /project/smtstud/ss18/data/wmt10-xlats/*.sgm .} 
 
 \vspace{0.5cm} 
 Das von NIST herausgegebene offizielle BLEU evaluation script finden Sie hier:
 
-\texttt{/project/smtstud/ss17/bin/mteval-v11a-cmufix\_b.pl} 
+\texttt{/project/smtstud/ss18/bin/mteval-v11a-cmufix\_b.pl} 
 
 \vspace{0.5cm} 
 Rufen Sie das Script mit der Option -h auf und sehen Sie sich die Ausgabe an.
@@ -155,12 +155,12 @@ Rufen Sie das Script mit der Option -h auf und sehen Sie sich die Ausgabe an.
 \item Verwenden Sie das Script, um die BLEU und NIST Scores für alle vier Systeme zu berechnen.
 
 \vspace{0.5cm} 
-reference: /project/smtstud/ss17/data/wmt10-xlats/ref/wmt10-newssyscombtest2010-ref.en.sgm
+reference: /project/smtstud/ss18/data/wmt10-xlats/ref/wmt10-newssyscombtest2010-ref.en.sgm
 
 source:     
-/project/smtstud/ss17/data/wmt10-xlats/ref/wmt10-newssyscombtest2010-src.de.sgm
+/project/smtstud/ss18/data/wmt10-xlats/ref/wmt10-newssyscombtest2010-src.de.sgm
 
-test:            alle vier *.sgm files (aus: \texttt{/project/smtstud/ss17/data/wmt10-xlats/} )
+test:            alle vier *.sgm files (aus: \texttt{/project/smtstud/ss18/data/wmt10-xlats/} )
 
 \vspace{0.5cm} 
 Verwenden sie folgende Optionen für alle evaluation runs:
@@ -207,9 +207,9 @@ RWTH & 6.9411 & 0.2435  & 0.2435 & 1.0 \\ \hline
 \begin{table}[h] 
  \begin{center} 
 \begin{tabular}{l} 
-/project/smtstud/ss17/bin/mteval-v11a-cmufix\_b.pl  \\ 
--r /project/smtstud/ss17/data/wmt10-xlats/ref/wmt10-newssyscombtest2010-ref.en.sgm  \\ 
--s /project/smtstud/ss17/data/wmt10-xlats/ref/wmt10-newssyscombtest2010-src.de.sgm  \\ 
+/project/smtstud/ss18/bin/mteval-v11a-cmufix\_b.pl  \\ 
+-r /project/smtstud/ss18/data/wmt10-xlats/ref/wmt10-newssyscombtest2010-ref.en.sgm  \\ 
+-s /project/smtstud/ss18/data/wmt10-xlats/ref/wmt10-newssyscombtest2010-src.de.sgm  \\ 
 -t ./newssyscombtest2010.de-en.kit.sgm  \\ 
 -b -m b -d 1    $>$ \&  kit.doc-eval.log \\ 
 \end{tabular}
@@ -240,10 +240,10 @@ Finden Sie das Dokument mit dem höchsten und mit dem niedrigsten BLEU Score (ig
 \begin{table}[h] 
  \begin{center} 
 \begin{tabular}{l} 
-/project/smtstud/ss17/bin/mteval-v11a-cmufix\_b.pl  \\ 
--r /project/smtstud/ss17/data/wmt10-xlats/ref/wmt10-newssyscombtest2010-ref.en.sgm  \\ 
--s /project/smtstud/ss17/data/wmt10-xlats/ref/wmt10-newssyscombtest2010-src.de.sgm  \\ 
--t /project/smtstud/ss17/data/wmt10-xlats/newssyscombtest2010.de-en.kit.sgm  \\ 
+/project/smtstud/ss18/bin/mteval-v11a-cmufix\_b.pl  \\ 
+-r /project/smtstud/ss18/data/wmt10-xlats/ref/wmt10-newssyscombtest2010-ref.en.sgm  \\ 
+-s /project/smtstud/ss18/data/wmt10-xlats/ref/wmt10-newssyscombtest2010-src.de.sgm  \\ 
+-t /project/smtstud/ss18/data/wmt10-xlats/newssyscombtest2010.de-en.kit.sgm  \\ 
 -m b \\ 
 \end{tabular}
  \end{center}
@@ -302,7 +302,7 @@ hyp: & lack of snow & on the & mountains & has bedeviled & the hotel owners \\ \
 \vspace{0.5cm} 
 Rufen Sie das Programm zur Berechnung des TER Scores für diese Übersetzung auf:
 
-/project/smtstud/ss17/bin/tercom\_v6b.pl -h $<$hypothesis-file$>$ -r $<$reference-file$>$ -i sgm –N \&
+/project/smtstud/ss18/bin/tercom\_v6b.pl -h $<$hypothesis-file$>$ -r $<$reference-file$>$ -i sgm –N \&
 (Laufzeit c.a. 5Min)
 
 \vspace{0.5cm} 
@@ -378,21 +378,21 @@ Schauen Sie sich die folgenden Datein an. Die Datein enthalten die gleichen Sät
 
 \vspace{0.5cm}  
 \textit{Referenz: } \\ 
-/project/smtstud/ss17/data/wmt16-ende/newstest2015-ende-ref.de.sgm \\ 
-/project/smtstud/ss17/data/wmt16-ende/newstest2015-ende-ref.de 
+/project/smtstud/ss18/data/wmt16-ende/newstest2015-ende-ref.de.sgm \\ 
+/project/smtstud/ss18/data/wmt16-ende/newstest2015-ende-ref.de 
 
 \vspace{0.5cm} 
 \textit{Hypothese: } \\ 
-/project/smtstud/ss17/data/wmt16-ende/newstest2015-ende.kit.de.sgm \\ 
-/project/smtstud/ss17/data/wmt16-ende/newstest2015-ende.kit.de 
+/project/smtstud/ss18/data/wmt16-ende/newstest2015-ende.kit.de.sgm \\ 
+/project/smtstud/ss18/data/wmt16-ende/newstest2015-ende.kit.de 
 
 
 \vspace{0.5cm} 
 Kopieren Sie sie in ihr Verzeichniss. \\ 
-cp /project/smtstud/ss17/data/wmt16-ende/newstest2015-ende-ref.de.sgm .  \\
-cp /project/smtstud/ss17/data/wmt16-ende/newstest2015-ende-ref.de .  \\ 
-cp /project/smtstud/ss17/data/wmt16-ende/newstest2015-ende.kit.de.sgm . \\ 
-cp /project/smtstud/ss17/data/wmt16-ende/newstest2015-ende.kit.de . \\ 
+cp /project/smtstud/ss18/data/wmt16-ende/newstest2015-ende-ref.de.sgm .  \\
+cp /project/smtstud/ss18/data/wmt16-ende/newstest2015-ende-ref.de .  \\ 
+cp /project/smtstud/ss18/data/wmt16-ende/newstest2015-ende.kit.de.sgm . \\ 
+cp /project/smtstud/ss18/data/wmt16-ende/newstest2015-ende.kit.de . \\ 
 
 
 \vspace{0.5cm} 
@@ -403,7 +403,7 @@ cp /project/smtstud/ss17/data/wmt16-ende/newstest2015-ende.kit.de . \\
 \begin{table}[h] 
  \begin{center} 
 \begin{tabular}{l} 
-python /project/smtstud/ss17/bin/CharacTER.py -r newstest2015-ende-ref.de \\ 
+python /project/smtstud/ss18/bin/CharacTER.py -r newstest2015-ende-ref.de \\ 
 -o newstest2015-ende.kit.de -v $>$ wmt15\_kit\_charTER.Log \\ 
 \end{tabular}
  \end{center}
@@ -425,7 +425,7 @@ Schauen Sie sich die Ausgabedatei an.
 \begin{table}[h] 
  \begin{center} 
 \begin{tabular}{l} 
-perl /project/smtstud/ss17/bin/tercom\_v6b.pl -r newstest2015-ende-ref.de.sgm\\
+perl /project/smtstud/ss18/bin/tercom\_v6b.pl -r newstest2015-ende-ref.de.sgm\\
 -h newstest2015-ende.kit.de.sgm -i sgm -N \\ 
 \end{tabular}
  \end{center}
