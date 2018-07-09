@@ -32,7 +32,7 @@
 \newcommand{\mpraktikum}{\textbf{MT Praktikum - Word Embeddings \& NNLM} } 
 
 \newcommand{\mhead}{\pagestyle{myheadings}
-        \markright{\underline{\textsf{\mpraktikum - \today  -  \hfill Ngoc-Quan Pham, KIT, eunah.cho@kit.edu}}}}
+        \markright{\underline{\textsf{\mpraktikum - \today  -  \hfill Ngoc-Quan Pham, KIT, ngoc.pham@kit.edu}}}}
 
 \newcommand{\mlogo}{ \sffamily \vspace*{-10mm}
   \begin{minipage}{2cm}
@@ -69,12 +69,12 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % \loes \medskip \\   % Signalverarbeitung
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-Um die Aufgaben auszuführen, können Sie Ihre Daten in folgendem Verzeichnis speichern: 
-\texttt{/project/smtstud/ss18/systems/USERNAME/} 
+%~ 
+%~ Um die Aufgaben auszuführen, können Sie Ihre Daten in folgendem Verzeichnis speichern: 
+%~ \texttt{/project/smtstud/ss18/systems/USERNAME/} 
 
 \vspace{0.5cm}
-\textbf{Environment Setup}
+\textbf{Environment Setup} \\
 First we need to have access to our cluster enviroment. 
 
 If you can use the available machines in the pool room, please log in with username: smt[30-45] (any number between 30 to 45, for example smt35), password=123456.
@@ -87,18 +87,19 @@ ssh smt[30-45]@i13hpc1.ira.uka.de
 
 For today's work we are going to need better computing power. Please log into i13hpc28 or i13hpc29, using the following command (once you are in a terminal of the pool room's computers or after ssh from your own computer):
 
+\textit{ssh i13hpc1} (this is our gateway server) (if you use your laptop then you are here already) then \\
 ssh i13hpc28  \textbf{or}
 ssh i13hpc29
 
-From there, go to the working directory
+From there, go to the working directory \\
 cd /project/smtstud/ss18/systems/ 
 
 \vspace{0.5cm}
 Now enter the virtual environment which is pre-installed using 2 commands:
 
-bash 
-
-. /project/smtstud/ss18/commands/setup.sh
+bash \\
+. /project/smtstud/ss18/commands/setup.sh \\
+(if you see the \text{(praktikum)} in the next line, the setup is successful)
 
 Finally, create a working directory with 
 
@@ -236,7 +237,7 @@ tree : forest = water : & \\
 \end{table}
 \end{itemize}
 
-\item We can repeat the above experiment using Google's 3 billion vectors. \\ 
+\item We can repeat the above experiment using Google's 3 billion vectors. Beware! The vector size is so big that loading will take 3-5 minutes.\\ 
 
 \texttt{python vector\_big.py} \\ 
 
@@ -376,9 +377,9 @@ Do you notice any difference between two vector spaces ?
 
 \item Take a look into the log file of training a neural language model. \\ 
 \texttt{/project/smtstud/ss18/data/rnnlm/Train.log} \\ 
-
 \begin{itemize} 
- \item How is the perplexity score for development data? 
+\item Hint: you can use the command \textit{less} or \textit{cat} to read a file in Linux
+\item How is the perplexity score for development data? 
 \end{itemize}
 
 
@@ -412,6 +413,8 @@ The script calculates perplexity for each sentence using the backward and the fo
 
 \begin{itemize} 
  \item How is the perplexity for each sentence using each model? 
+ \item Note: we showed the score of each sentence. Perplexity is the negative score (it cannot be negative). 
+ \item Note: lower perplexity means the model is more certain about the sentence. 
 \end{itemize}
 
 
